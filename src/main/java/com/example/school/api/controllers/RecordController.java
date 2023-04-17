@@ -4,7 +4,7 @@ import com.example.school.api.dto.RecordPojo;
 import com.example.school.api.exceptions.StudentNotFoundException;
 import com.example.school.api.exceptions.SubjectNotFoundException;
 import com.example.school.api.services.RecordService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping({"/api/records"})
 public class RecordController {
 

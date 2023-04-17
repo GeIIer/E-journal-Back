@@ -3,11 +3,11 @@ package com.example.school.api.mapper;
 import com.example.school.api.dto.StudentPojo;
 import com.example.school.api.entities.StudentEntity;
 import com.example.school.api.repositories.GroupRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class StudentMapper {
 
     private final GroupRepository groupRepository;

@@ -2,14 +2,14 @@ package com.example.school.api.controllers;
 
 import com.example.school.api.dto.StudentPojo;
 import com.example.school.api.services.StudentService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping({"/api/students"})
 public class StudentController {
 
@@ -52,7 +52,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public StudentPojo findStudentById(@PathVariable long id) {
+    public StudentPojo findStudentById(@PathVariable Long id) {
         return studentService.findById(id);
     }
 }

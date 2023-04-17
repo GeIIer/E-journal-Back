@@ -7,7 +7,7 @@ import com.example.school.api.exceptions.SubjectNotFoundException;
 import com.example.school.api.mapper.RecordMapper;
 import com.example.school.api.repositories.JdbcRecordRepository;
 import com.example.school.api.repositories.RecordRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class RecordService {
     private final JdbcRecordRepository jdbcRecordRepository;
 

@@ -6,11 +6,11 @@ import com.example.school.api.exceptions.StudentNotFoundException;
 import com.example.school.api.exceptions.SubjectNotFoundException;
 import com.example.school.api.repositories.StudentRepository;
 import com.example.school.api.repositories.SubjectRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class RecordMapper {
 
     private final StudentRepository studentRepository;

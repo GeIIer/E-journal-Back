@@ -5,14 +5,14 @@ import com.example.school.api.entities.GroupEntity;
 import com.example.school.api.exceptions.GroupNotFoundException;
 import com.example.school.api.mapper.GroupMapper;
 import com.example.school.api.repositories.GroupRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class GroupService {
     private final GroupRepository groupRepository;
 
@@ -25,10 +25,10 @@ public class GroupService {
                 .toList();
     }
 
-    public GroupPojo findByName(String name) {
-        Optional<GroupEntity> group = groupRepository.findByNameContainingIgnoreCase(name);
+    public GroupPojo findByName(Character letter) {
+        Optional<GroupEntity> group = groupRepository.findByClassLetter(letter);
         return group.map(groupMapper::fromEntity).orElseThrow(
-                () -> new GroupNotFoundException(name));
+                () -> new GroupNotFoundException(letter.toString()));
     }
 
     public GroupPojo findById(Long id) {

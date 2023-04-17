@@ -1,7 +1,7 @@
 package com.example.school.api.repositories;
 
 import com.example.school.api.entities.RecordEntity;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Repository
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class JdbcRecordRepository {
     private final JdbcTemplate jdbcTemplate;
 

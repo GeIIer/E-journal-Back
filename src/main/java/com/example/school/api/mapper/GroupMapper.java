@@ -3,15 +3,13 @@ package com.example.school.api.mapper;
 import com.example.school.api.dto.GroupPojo;
 import com.example.school.api.entities.GroupEntity;
 import com.example.school.api.exceptions.TeacherNotFoundException;
-import com.example.school.api.repositories.GroupRepository;
 import com.example.school.api.repositories.TeacherRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class GroupMapper {
-    private final GroupRepository groupRepository;
     private final TeacherRepository teacherRepository;
     private final StudentMapper studentMapper;
 

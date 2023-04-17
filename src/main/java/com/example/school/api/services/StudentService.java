@@ -2,19 +2,16 @@ package com.example.school.api.services;
 
 import com.example.school.api.dto.StudentPojo;
 import com.example.school.api.entities.StudentEntity;
+import com.example.school.api.exceptions.StudentNotFoundException;
 import com.example.school.api.mapper.StudentMapper;
-import com.example.school.api.repositories.GroupRepository;
 import com.example.school.api.repositories.StudentRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class StudentService {
 
     private final StudentMapper studentMapper;
@@ -57,10 +54,10 @@ public class StudentService {
         return true;
     }
 
-    public StudentPojo findById(long id) {
+    public StudentPojo findById(Long id) {
         Optional<StudentEntity> studentOptional = studentRepository.findById(id);
         return studentOptional.map(studentMapper::fromEntity).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Студента нет"));
+                () -> new StudentNotFoundException(id.toString()));
     }
 
     public List<StudentPojo> findAllByGroup(Long groupId) {

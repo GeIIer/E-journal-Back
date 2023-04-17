@@ -22,4 +22,7 @@ public class TeacherEntity extends AccountEntity {
             )
     )
     private List<SubjectEntity> subjects;
+    private int experience;
+    private double salary;
+
 }

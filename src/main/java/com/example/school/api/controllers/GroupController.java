@@ -2,14 +2,14 @@ package com.example.school.api.controllers;
 
 import com.example.school.api.dto.GroupPojo;
 import com.example.school.api.services.GroupService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping({"/api/groups"})
 public class GroupController {
 
@@ -20,9 +20,9 @@ public class GroupController {
         return groupService.findAll();
     }
 
-    @GetMapping("/all/{name}")
-    public GroupPojo findByName(@PathVariable String name) {
-        return groupService.findByName(name);
+    @GetMapping("/all/{letter}")
+    public GroupPojo findByName(@PathVariable Character letter) {
+        return groupService.findByName(letter);
     }
 
     @GetMapping("/{id}")
