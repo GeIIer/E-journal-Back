@@ -1,10 +1,14 @@
 package com.example.school.api.services;
 
 import com.example.school.api.dto.GroupPojo;
+import com.example.school.api.dto.GroupsAndSubjectsPojo;
+import com.example.school.api.dto.SubjectPojo;
 import com.example.school.api.entities.GroupEntity;
 import com.example.school.api.exceptions.GroupNotFoundException;
 import com.example.school.api.mapper.GroupMapper;
+import com.example.school.api.mapper.SubjectMapper;
 import com.example.school.api.repositories.GroupRepository;
+import com.example.school.api.repositories.SubjectRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +19,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class GroupService {
     private final GroupRepository groupRepository;
-
+    private final SubjectRepository subjectRepository;
     private final GroupMapper groupMapper;
+    private final SubjectMapper subjectMapper;
 
     public List<GroupPojo> findAll() {
         return groupRepository.findAll()
@@ -48,5 +53,21 @@ public class GroupService {
 
     public void deleteGroup(Long id) {
         groupRepository.deleteById(id);
+    }
+
+
+    public GroupsAndSubjectsPojo findAllGroupsAndSubjects() {
+        List<GroupPojo> groupsPojo = groupRepository.findAll().stream().map(group -> {
+            GroupPojo groupPojo = new GroupPojo();
+            groupPojo.setId(group.getId());
+            groupPojo.setClassNumber(group.getClassNumber());
+            groupPojo.setClassLetter(group.getClassLetter());
+            groupPojo.setTeacherId(group.getTeacher().getId());
+            return groupPojo;
+        }).toList();
+        List<SubjectPojo> subjectsPojo = subjectRepository.findAll().stream()
+                .map(subjectMapper::fromEntity)
+                .toList();
+        return new GroupsAndSubjectsPojo(groupsPojo, subjectsPojo);
     }
 }
