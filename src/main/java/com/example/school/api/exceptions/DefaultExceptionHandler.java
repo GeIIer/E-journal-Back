@@ -13,6 +13,7 @@ public class DefaultExceptionHandler {
 
     @ExceptionHandler({
             StudentNotFoundException.class,
+            TeacherNotFoundException.class,
             GroupNotFoundException.class,
             SubjectNotFoundException.class
     })
