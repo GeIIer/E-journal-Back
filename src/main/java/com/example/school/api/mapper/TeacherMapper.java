@@ -23,11 +23,12 @@ public class TeacherMapper {
                         .stream()
                         .map(subjectMapper::fromEntity)
                         .toList())
+                .experience(entity.getExperience())
+                .salary(entity.getSalary())
                 .build();
     }
 
     public TeacherEntity toEntity (TeacherPojo pojo){
-
         TeacherEntity entity = new TeacherEntity();
         entity.setId(pojo.getId());
         entity.setFirstname(pojo.getFirstname());

@@ -25,12 +25,6 @@ public class StudentController {
         return studentService.findAll();
     }
 
-    @GetMapping("/all/id")
-    public List<StudentPojo> findAllByName(@RequestParam String firstName,
-                                           @RequestParam String lastName) {
-        return studentService.findAllByName(firstName, lastName);
-    }
-
     @GetMapping("/all/{groupId}")
     public List<StudentPojo> findAllByGroup(@PathVariable Long groupId) {
         return studentService.findAllByGroup(groupId);

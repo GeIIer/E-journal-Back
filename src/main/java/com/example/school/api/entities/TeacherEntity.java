@@ -1,6 +1,5 @@
 package com.example.school.api.entities;
 
-import com.example.school.authorization.entities.AccountEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +10,16 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "teachers")
-public class TeacherEntity extends AccountEntity {
+public class TeacherEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String firstname;
+
+    private String lastname;
+
+    private String email;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "teachers_subjects",

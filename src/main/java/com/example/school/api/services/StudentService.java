@@ -34,13 +34,6 @@ public class StudentService {
                 .toList();
     }
 
-    public List<StudentPojo> findAllByName(String firstName, String lastName) {
-        return studentRepository.findAllByFirstnameContainingIgnoreCaseAndLastnameEndingWithIgnoreCase(firstName, lastName)
-                .stream()
-                .map(studentMapper::fromEntity)
-                .toList();
-    }
-
     public StudentPojo update(StudentPojo dto) {
         return studentMapper.fromEntity(studentRepository.save(studentMapper.toEntity(dto)));
     }
@@ -61,7 +54,7 @@ public class StudentService {
     }
 
     public List<StudentPojo> findAllByGroup(Long groupId) {
-        return studentRepository.findAllByGroup(groupId)
+        return studentRepository.findAllByGroup_Id(groupId)
                 .stream()
                 .map(studentMapper::fromEntity)
                 .toList();

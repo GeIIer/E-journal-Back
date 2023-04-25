@@ -1,4 +1,4 @@
-package com.example.school.authorization.service;
+package com.example.school.api.services;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -29,7 +29,7 @@ public class StudentMapper {
         student.setFirstname(pojo.getFirstname());
         student.setLastname(pojo.getLastname());
         student.setEmail(pojo.getEmail());
-        student.setGroup(groupRepository.findById(pojo.getId()).orElse(null));
+        student.setGroup(groupRepository.findById(pojo.getGroupId()).orElse(null));
         return student;
     }
 }

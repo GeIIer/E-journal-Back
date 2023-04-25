@@ -44,9 +44,7 @@ public class GroupMapper {
         group.setId(pojo.getId());
         group.setClassNumber(pojo.getClassNumber());
         group.setClassLetter(pojo.getClassLetter());
-        group.setTeacher(teacherRepository.findById(pojo.getTeacher().getId()).orElseThrow(
-                () -> new TeacherNotFoundException(pojo.getTeacher().getId().toString())
-        ));
+        group.setTeacher(teacherMapper.toEntity(pojo.getTeacher()));
         group.setListStudents(pojo.getListStudents() != null ? pojo.getListStudents()
                 .stream()
                 .map(studentMapper::toEntity)
