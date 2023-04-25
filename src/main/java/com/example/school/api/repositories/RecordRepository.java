@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
 
+    @Override
+    void deleteById(Long aLong);
 }

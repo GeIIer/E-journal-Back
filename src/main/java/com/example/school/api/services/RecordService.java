@@ -30,4 +30,8 @@ public class RecordService {
         List<RecordEntity> records = recordPojo.stream().map(recordMapper::toEntity).toList();
         return jdbcRecordRepository.saveAll(records);
     }
+
+    public void deleteById(Long id) {
+        recordRepository.deleteById(id);
+    }
 }

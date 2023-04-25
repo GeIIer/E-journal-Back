@@ -1,19 +1,18 @@
-package com.example.school.api.dto;
+package com.example.school.api.dto.group;
+
+import com.example.school.api.dto.TeacherPojo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GroupPojo {
+public class GroupWithoutStudentsPojo {
     private Long id;
     private int classNumber;
     private char classLetter;
-    private Long teacherId;
-    private List<StudentPojo> listStudents;
+    private TeacherPojo teacher;
 }

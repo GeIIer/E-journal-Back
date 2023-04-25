@@ -1,6 +1,7 @@
 package com.example.school.api.mapper;
 
-import com.example.school.api.dto.GroupPojo;
+import com.example.school.api.dto.group.GroupPojo;
+import com.example.school.api.dto.group.GroupWithoutStudentsPojo;
 import com.example.school.api.entities.GroupEntity;
 import com.example.school.api.exceptions.TeacherNotFoundException;
 import com.example.school.api.repositories.TeacherRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 public class GroupMapper {
     private final TeacherRepository teacherRepository;
     private final StudentMapper studentMapper;
+    private final TeacherMapper teacherMapper;
 
     public GroupPojo fromEntity (GroupEntity entity){
 
@@ -19,11 +21,21 @@ public class GroupMapper {
                 .id(entity.getId())
                 .classNumber(entity.getClassNumber())
                 .classLetter(entity.getClassLetter())
-                .teacherId(entity.getId())
-                .listStudents(entity.getListStudents()
+                .teacher(teacherMapper.fromEntity(entity.getTeacher()))
+                .listStudents(entity.getListStudents() != null ? entity.getListStudents()
                         .stream()
                         .map(studentMapper::fromEntity)
-                        .toList())
+                        .toList(): null)
+                .build();
+    }
+
+    public GroupWithoutStudentsPojo fromEntityWithoutStudents (GroupEntity entity){
+
+        return GroupWithoutStudentsPojo.builder()
+                .id(entity.getId())
+                .classNumber(entity.getClassNumber())
+                .classLetter(entity.getClassLetter())
+                .teacher(teacherMapper.fromEntity(entity.getTeacher()))
                 .build();
     }
 
@@ -32,13 +44,13 @@ public class GroupMapper {
         group.setId(pojo.getId());
         group.setClassNumber(pojo.getClassNumber());
         group.setClassLetter(pojo.getClassLetter());
-        group.setTeacher(teacherRepository.findById(pojo.getTeacherId()).orElseThrow(
-                () -> new TeacherNotFoundException(pojo.getTeacherId().toString())
+        group.setTeacher(teacherRepository.findById(pojo.getTeacher().getId()).orElseThrow(
+                () -> new TeacherNotFoundException(pojo.getTeacher().getId().toString())
         ));
-        group.setListStudents(pojo.getListStudents()
+        group.setListStudents(pojo.getListStudents() != null ? pojo.getListStudents()
                 .stream()
                 .map(studentMapper::toEntity)
-                .toList());
+                .toList() : null);
         return group;
     }
 }

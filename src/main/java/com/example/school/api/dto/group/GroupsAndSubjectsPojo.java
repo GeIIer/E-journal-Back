@@ -1,5 +1,6 @@
-package com.example.school.api.dto;
+package com.example.school.api.dto.group;
 
+import com.example.school.api.dto.SubjectPojo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GroupsAndSubjectsPojo {
-    List<GroupPojo> groups;
+    List<GroupWithoutStudentsPojo> groups;
     List<SubjectPojo> subjects;
 }

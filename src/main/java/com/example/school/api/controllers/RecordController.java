@@ -36,4 +36,9 @@ public class RecordController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
         }
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
+        recordService.deleteById(id);
+    }
 }

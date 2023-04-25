@@ -1,12 +1,14 @@
 package com.example.school.api.services;
 
-import com.example.school.api.dto.GroupPojo;
-import com.example.school.api.dto.GroupsAndSubjectsPojo;
+import com.example.school.api.dto.group.GroupPojo;
+import com.example.school.api.dto.group.GroupWithoutStudentsPojo;
+import com.example.school.api.dto.group.GroupsAndSubjectsPojo;
 import com.example.school.api.dto.SubjectPojo;
 import com.example.school.api.entities.GroupEntity;
 import com.example.school.api.exceptions.GroupNotFoundException;
 import com.example.school.api.mapper.GroupMapper;
 import com.example.school.api.mapper.SubjectMapper;
+import com.example.school.api.mapper.TeacherMapper;
 import com.example.school.api.repositories.GroupRepository;
 import com.example.school.api.repositories.SubjectRepository;
 import lombok.AllArgsConstructor;
@@ -23,10 +25,12 @@ public class GroupService {
     private final GroupMapper groupMapper;
     private final SubjectMapper subjectMapper;
 
-    public List<GroupPojo> findAll() {
+    private final TeacherMapper teacherMapper;
+
+    public List<GroupWithoutStudentsPojo> findAll() {
         return groupRepository.findAll()
                 .stream()
-                .map(groupMapper::fromEntity)
+                .map(groupMapper::fromEntityWithoutStudents)
                 .toList();
     }
 
@@ -57,12 +61,12 @@ public class GroupService {
 
 
     public GroupsAndSubjectsPojo findAllGroupsAndSubjects() {
-        List<GroupPojo> groupsPojo = groupRepository.findAll().stream().map(group -> {
-            GroupPojo groupPojo = new GroupPojo();
+        List<GroupWithoutStudentsPojo> groupsPojo = groupRepository.findAll().stream().map(group -> {
+            GroupWithoutStudentsPojo groupPojo = new GroupWithoutStudentsPojo();
             groupPojo.setId(group.getId());
             groupPojo.setClassNumber(group.getClassNumber());
             groupPojo.setClassLetter(group.getClassLetter());
-            groupPojo.setTeacherId(group.getTeacher().getId());
+            groupPojo.setTeacher(teacherMapper.fromEntity(group.getTeacher()));
             return groupPojo;
         }).toList();
         List<SubjectPojo> subjectsPojo = subjectRepository.findAll().stream()

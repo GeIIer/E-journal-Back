@@ -1,7 +1,8 @@
 package com.example.school.api.controllers;
 
-import com.example.school.api.dto.GroupPojo;
-import com.example.school.api.dto.GroupsAndSubjectsPojo;
+import com.example.school.api.dto.group.GroupPojo;
+import com.example.school.api.dto.group.GroupWithoutStudentsPojo;
+import com.example.school.api.dto.group.GroupsAndSubjectsPojo;
 import com.example.school.api.services.GroupService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class GroupController {
     private final GroupService groupService;
 
     @GetMapping("/all")
-    public List<GroupPojo> findAll() {
+    public List<GroupWithoutStudentsPojo> findAll() {
         return groupService.findAll();
     }
 
