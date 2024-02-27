@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping({"/api/subjects"})
 public class SubjectController extends BaseController<SubjectEntity, SubjectPojo> {
-
     public SubjectController(BaseService<SubjectEntity, SubjectPojo> service) {
         super(service);
     }

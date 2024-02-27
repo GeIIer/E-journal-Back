@@ -6,19 +6,12 @@ import com.example.school.api.entities.GroupEntity;
 import com.example.school.api.services.GroupService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping({"/api/groups"})
 public class GroupController extends BaseController<GroupEntity, GroupPojo> {
     protected GroupController(GroupService groupService) {
         super(groupService);
-    }
-
-    @GetMapping()
-    public List<GroupPojo> findAll() {
-        return service.findAll();
     }
 
     @GetMapping("/subjects")
@@ -31,18 +24,9 @@ public class GroupController extends BaseController<GroupEntity, GroupPojo> {
         return ((GroupService) service).findByName(letter);
     }
 
-    @GetMapping("/{id}")
-    public GroupPojo findById(@PathVariable Long id) {
-        return service.findById(id);
-    }
-
+    @Override
     @PostMapping()
-    public GroupPojo createGroup(@RequestBody GroupPojo dto) {
+    public GroupPojo create(@RequestBody GroupPojo dto) {
         return service.create(dto);
-    }
-
-    @PutMapping()
-    public GroupPojo updateGroup(@RequestBody GroupPojo dto) {
-        return service.update(dto);
     }
 }
