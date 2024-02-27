@@ -2,15 +2,12 @@ package com.example.school.api.mapper;
 
 import com.example.school.api.dto.SubjectPojo;
 import com.example.school.api.entities.SubjectEntity;
-import com.example.school.api.repositories.SubjectRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class SubjectMapper {
-    private final SubjectRepository subjectRepository;
-
+public class SubjectMapper extends BaseMapper<SubjectEntity, SubjectPojo> {
     public SubjectPojo fromEntity (SubjectEntity entity){
 
         return SubjectPojo.builder()

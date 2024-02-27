@@ -4,34 +4,32 @@ import com.example.school.api.dto.RecordPojo;
 import com.example.school.api.entities.RecordEntity;
 import com.example.school.api.exceptions.StudentNotFoundException;
 import com.example.school.api.exceptions.SubjectNotFoundException;
-import com.example.school.api.mapper.RecordMapper;
+import com.example.school.api.mapper.BaseMapper;
+import com.example.school.api.repositories.BaseRepository;
 import com.example.school.api.repositories.JdbcRecordRepository;
-import com.example.school.api.repositories.RecordRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
-@AllArgsConstructor
-public class RecordService {
+public class RecordService extends BaseEntityService<RecordEntity, RecordPojo> {
     private final JdbcRecordRepository jdbcRecordRepository;
-
-    private final RecordRepository recordRepository;
-
-    private final RecordMapper recordMapper;
+    public RecordService(BaseRepository<RecordEntity> repository,
+                         JdbcRecordRepository jdbcRecordRepository,
+                         BaseMapper<RecordEntity, RecordPojo> mapper) {
+        super(repository, mapper);
+        this.jdbcRecordRepository = jdbcRecordRepository;
+    }
 
     public Map<Long, ArrayList<RecordPojo>> getRecordsByGroupAndSubject(Long groupId, Long subjectId) throws SQLException {
         return jdbcRecordRepository.getRecords(groupId, subjectId);
     }
 
     public int[] saveAll(List<RecordPojo> recordPojo) throws SubjectNotFoundException, StudentNotFoundException{
-        List<RecordEntity> records = recordPojo.stream().map(recordMapper::toEntity).toList();
+        List<RecordEntity> records = recordPojo.stream().map(mapper::toEntity).toList();
         return jdbcRecordRepository.saveAll(records);
-    }
-
-    public void deleteById(Long id) {
-        recordRepository.deleteById(id);
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class RecordMapper {
+public class RecordMapper extends BaseMapper<RecordEntity, RecordPojo> {
 
     private final StudentRepository studentRepository;
 

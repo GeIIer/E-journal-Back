@@ -1,36 +1,18 @@
 package com.example.school.api.controllers;
 
 import com.example.school.api.dto.SubjectPojo;
-import com.example.school.api.services.SubjectService;
-import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.example.school.api.entities.SubjectEntity;
+import com.example.school.api.services.BaseService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@AllArgsConstructor
 @RequestMapping({"/api/subjects"})
-public class SubjectController {
-    private final SubjectService subjectService;
+public class SubjectController extends BaseController<SubjectEntity, SubjectPojo> {
 
-    @GetMapping("/all")
-    public List<SubjectPojo> findAll() {
-        return subjectService.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public SubjectPojo findById(@PathVariable Long id) {
-        return  subjectService.findById(id);
-    }
-
-    @PostMapping()
-    public SubjectPojo createSubject(@RequestBody SubjectPojo subjectPojo) {
-        return subjectService.createSubject(subjectPojo);
-    }
-
-    @DeleteMapping("/{id}")
-    public boolean deleteStudent(@PathVariable Long id) {
-        return subjectService.deleteById(id);
+    public SubjectController(BaseService<SubjectEntity, SubjectPojo> service) {
+        super(service);
     }
 }

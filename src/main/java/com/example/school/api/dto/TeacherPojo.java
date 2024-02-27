@@ -1,6 +1,5 @@
 package com.example.school.api.dto;
 
-import com.example.school.api.entities.SubjectEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

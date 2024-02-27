@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class TeacherMapper {
+public class TeacherMapper extends BaseMapper<TeacherEntity, TeacherPojo> {
 
     private final SubjectMapper subjectMapper;
 
