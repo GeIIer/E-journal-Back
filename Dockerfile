@@ -7,7 +7,7 @@ COPY ./src ./src
 # Build project with out test(if need run test, use gitlab CI/CD)
 RUN mvn package -DskipTests
 
-FROM amazoncorretto:11.0.8-alpine
+FROM amazoncorretto:17
 # install curl(heartbeat test)
 RUN apk --no-cache add curl
 # create volume(if read file, drop error)
