@@ -17,6 +17,6 @@ public class TeacherPojo {
     private String lastname;
     private String email;
     private List<SubjectPojo> subjects;
-    private int experience;
-    private double salary;
+    private Integer experience;
+    private Double salary;
 }

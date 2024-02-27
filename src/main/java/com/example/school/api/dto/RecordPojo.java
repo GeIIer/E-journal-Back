@@ -22,5 +22,7 @@ public class RecordPojo {
 
     private Long subject;
 
-    private char result;
+    private Integer result;
+
+    private Boolean present;
 }

@@ -30,7 +30,9 @@ public class TeacherEntity {
             )
     )
     private List<SubjectEntity> subjects;
-    private int experience;
-    private double salary;
+
+    private Integer experience;
+
+    private Double salary;
 
 }

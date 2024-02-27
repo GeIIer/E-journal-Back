@@ -25,6 +25,7 @@ public class RecordMapper extends BaseMapper<RecordEntity, RecordPojo> {
                 .date(entity.getDate())
                 .subject(entity.getSubject().getId())
                 .result(entity.getResult())
+                .present(entity.getPresent())
                 .build();
     }
 
@@ -39,6 +40,11 @@ public class RecordMapper extends BaseMapper<RecordEntity, RecordPojo> {
                 () -> new StudentNotFoundException(pojo.getStudent().toString())
         ));
         record.setResult(pojo.getResult());
+        if (record.getPresent() == null) {
+            record.setPresent(true);
+        } else {
+            record.setPresent(pojo.getPresent());
+        }
         return record;
     }
 }

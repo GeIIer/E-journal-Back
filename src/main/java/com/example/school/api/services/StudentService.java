@@ -25,4 +25,9 @@ public class StudentService extends BaseEntityService<StudentEntity, StudentPojo
                 .map(mapper::fromEntity)
                 .toList();
     }
+
+    //TODO: Доделать
+    public List<StudentPojo> findAverageMarkByStudent(Long id) {
+        return null;
+    }
 }

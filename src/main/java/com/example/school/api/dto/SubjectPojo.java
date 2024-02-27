@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class SubjectPojo {
     private Long id;
     private String subjectName;
-    private int studyHours;
-    private int checkpoints;
+    private Integer studyHours;
+    private Integer checkpoints;
 }

@@ -26,6 +26,8 @@ public class RecordEntity {
     @JoinColumn(name = "subject_id", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private SubjectEntity subject;
 
-    private char result;
+    private Integer result;
 
+    @Column(columnDefinition = "boolean default false")
+    private Boolean present;
 }

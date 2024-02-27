@@ -15,6 +15,8 @@ public class SubjectEntity {
 
     @Column(columnDefinition = "text", length = 50, nullable = false, unique = true)
     private String subjectName;
-    private int studyHours;
-    private int checkpoints;
+
+    private Integer studyHours;
+
+    private Integer checkpoints;
 }

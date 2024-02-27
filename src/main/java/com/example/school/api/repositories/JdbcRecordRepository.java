@@ -20,7 +20,8 @@ public class JdbcRecordRepository {
         return RecordPojo.builder()
                 .id(rs.getLong("id"))
                 .date(rs.getDate("date"))
-                .result(rs.getString("result").charAt(0))
+                .result(rs.getInt("result"))
+                .present(rs.getBoolean("present"))
                 .subject(rs.getLong("subject_id"))
                 .student(rs.getLong("student_id"))
                 .build();
@@ -52,7 +53,7 @@ public class JdbcRecordRepository {
         catch(Exception ex){
             System.out.println("Connection failed...");
 
-            System.out.println(ex);
+            System.out.println(ex.getMessage());
             return null;
         }
     }

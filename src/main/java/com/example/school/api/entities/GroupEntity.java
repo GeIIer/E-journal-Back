@@ -15,9 +15,10 @@ public class GroupEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int classNumber;
+    private Integer classNumber;
 
-    private char classLetter;
+    private Character classLetter;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private TeacherEntity teacher;
 

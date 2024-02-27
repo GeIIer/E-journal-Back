@@ -18,6 +18,7 @@ public class StudentEntity{
     private String lastname;
 
     private String email;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_id", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private GroupEntity group;
