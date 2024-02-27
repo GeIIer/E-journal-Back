@@ -6,10 +6,10 @@ RUN mvn -f /app/pom.xml clean package -DskipTests
 
 
 FROM amazoncorretto:17
-RUN apk --no-cache add curl
+RUN /bin/bash -c "yum update -y && yum install -y curl"
 VOLUME /tmp
-ARG BUILDER_DIR=/app
-ARG APPJAR=/app/target/*.jar
+ARG BUILDER_DIR=app
+ARG APPJAR=target/*.jar
 COPY --from=builder ${BUILDER_DIR}/${APPJAR} /app/app.jar
 ENV TZ=Europe/Samara
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/app.jar"]
