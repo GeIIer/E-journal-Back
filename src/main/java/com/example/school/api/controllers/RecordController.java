@@ -23,8 +23,8 @@ public class RecordController extends BaseController<RecordEntity, RecordPojo> {
         super(service);
     }
 
-    @GetMapping()
-    public Map<Long, ArrayList<RecordPojo>> getRecordsByGroupAndSubject(@RequestParam(name = "groupId") Long groupId,
+    @GetMapping("/{groupId}")
+    public Map<Long, ArrayList<RecordPojo>> getRecordsByGroupAndSubject(@PathVariable(name = "groupId") Long groupId,
                                                                         @RequestParam(name = "subjectId") Long subjectId) throws SQLException {
         return ((RecordService) service).getRecordsByGroupAndSubject(groupId, subjectId);
     }
