@@ -14,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class GroupPojo {
     private Long id;
-    private int classNumber;
-    private char classLetter;
+    private Integer classNumber;
+    private Character classLetter;
     private TeacherPojo teacher;
     private List<StudentPojo> listStudents;
 }

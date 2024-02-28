@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GroupWithoutStudentsPojo {
     private Long id;
-    private int classNumber;
-    private char classLetter;
+    private Integer classNumber;
+    private Character classLetter;
     private TeacherPojo teacher;
 }

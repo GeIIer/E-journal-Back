@@ -19,10 +19,10 @@ public class TeacherMapper extends BaseMapper<TeacherEntity, TeacherPojo> {
                 .firstname(entity.getFirstname())
                 .lastname(entity.getLastname())
                 .email(entity.getEmail())
-                .subjects(entity.getSubjects()
+                .subjects(entity.getSubjects() != null ? entity.getSubjects()
                         .stream()
                         .map(subjectMapper::fromEntity)
-                        .toList())
+                        .toList() : null)
                 .experience(entity.getExperience())
                 .salary(entity.getSalary())
                 .build();
@@ -34,10 +34,10 @@ public class TeacherMapper extends BaseMapper<TeacherEntity, TeacherPojo> {
         entity.setFirstname(pojo.getFirstname());
         entity.setLastname(pojo.getLastname());
         entity.setEmail(pojo.getEmail());
-        entity.setSubjects(pojo.getSubjects()
+        entity.setSubjects(pojo.getSubjects() != null ? pojo.getSubjects()
                 .stream()
                 .map(subjectMapper::toEntity)
-                .toList());
+                .toList() : null);
         entity.setExperience(pojo.getExperience());
         entity.setSalary(pojo.getSalary());
         return entity;

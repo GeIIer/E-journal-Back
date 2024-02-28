@@ -5,11 +5,14 @@ import com.example.school.api.dto.group.GroupPojo;
 import com.example.school.api.dto.group.GroupWithoutStudentsPojo;
 import com.example.school.api.dto.group.GroupsAndSubjectsPojo;
 import com.example.school.api.entities.GroupEntity;
+import com.example.school.api.entities.TeacherEntity;
 import com.example.school.api.exceptions.GroupNotFoundException;
+import com.example.school.api.exceptions.TeacherNotFoundException;
 import com.example.school.api.mapper.BaseMapper;
 import com.example.school.api.mapper.TeacherMapper;
 import com.example.school.api.repositories.BaseRepository;
 import com.example.school.api.repositories.GroupRepository;
+import com.example.school.api.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +21,15 @@ import java.util.Optional;
 @Service
 public class GroupService extends BaseEntityService<GroupEntity, GroupPojo> {
     private final SubjectService subjectService;
+    private final TeacherRepository teacherRepository;
     private final TeacherMapper teacherMapper;
     public GroupService(BaseRepository<GroupEntity> repository,
+                        TeacherRepository teacherRepository,
                         BaseMapper<GroupEntity, GroupPojo> mapper,
-                        SubjectService subjectService, TeacherMapper teacherMapper) {
+                        SubjectService subjectService,
+                        TeacherMapper teacherMapper) {
         super(repository, mapper);
+        this.teacherRepository = teacherRepository;
         this.subjectService = subjectService;
         this.teacherMapper = teacherMapper;
     }
@@ -31,6 +38,19 @@ public class GroupService extends BaseEntityService<GroupEntity, GroupPojo> {
         Optional<GroupEntity> group = ((GroupRepository) repository).findByClassLetter(letter);
         return group.map(mapper::fromEntity).orElseThrow(
                 () -> new GroupNotFoundException(letter.toString()));
+    }
+
+    @Override
+    public GroupPojo create(GroupPojo pojo) {
+        if (pojo.getTeacher() == null) {
+            throw new TeacherNotFoundException("null");
+        }
+        Long teacherId = pojo.getTeacher().getId();
+        TeacherEntity teacher = teacherRepository.findById(teacherId)
+                .orElseThrow(() -> new TeacherNotFoundException(String.valueOf(teacherId)));
+        GroupEntity entity = mapper.toEntity(pojo);
+        entity.setTeacher(teacher);
+        return mapper.fromEntity(repository.save(entity));
     }
 
     public GroupsAndSubjectsPojo findAllGroupsAndSubjects() {

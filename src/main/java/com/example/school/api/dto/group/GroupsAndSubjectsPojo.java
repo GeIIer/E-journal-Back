@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GroupsAndSubjectsPojo {
-    List<GroupWithoutStudentsPojo> groups;
-    List<SubjectPojo> subjects;
+    private List<GroupWithoutStudentsPojo> groups;
+    private List<SubjectPojo> subjects;
 }

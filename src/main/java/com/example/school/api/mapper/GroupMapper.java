@@ -13,7 +13,7 @@ public class GroupMapper extends BaseMapper<GroupEntity, GroupPojo> {
     private final StudentMapper studentMapper;
     private final TeacherMapper teacherMapper;
 
-    public GroupPojo fromEntity (GroupEntity entity){
+    public GroupPojo fromEntity (GroupEntity entity) {
 
         return GroupPojo.builder()
                 .id(entity.getId())
@@ -27,7 +27,7 @@ public class GroupMapper extends BaseMapper<GroupEntity, GroupPojo> {
                 .build();
     }
 
-    public GroupWithoutStudentsPojo fromEntityWithoutStudents (GroupEntity entity){
+    public GroupWithoutStudentsPojo fromEntityWithoutStudents (GroupEntity entity) {
 
         return GroupWithoutStudentsPojo.builder()
                 .id(entity.getId())
