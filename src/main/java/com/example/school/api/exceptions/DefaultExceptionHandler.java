@@ -1,5 +1,6 @@
 package com.example.school.api.exceptions;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +16,14 @@ public class DefaultExceptionHandler {
             StudentNotFoundException.class,
             TeacherNotFoundException.class,
             GroupNotFoundException.class,
-            SubjectNotFoundException.class
+            SubjectNotFoundException.class,
+            EntityNotFoundException.class
     })
     public ResponseEntity<ApiError> handleException(Exception ex,
                                                     HttpServletRequest request) {
         ApiError apiError = new ApiError(
                 request.getRequestURI(),
-                ex.getMessage(),
+                "Сущность не найдена " + ex.getMessage(),
                 HttpStatus.NOT_FOUND.value(),
                 LocalDate.now()
         );

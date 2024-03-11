@@ -1,6 +1,6 @@
 package com.example.school.api.mapper;
 
-import com.example.school.api.dto.StudentPojo;
+import com.example.school.api.dto.student.StudentPojo;
 import com.example.school.api.entities.StudentEntity;
 import com.example.school.api.repositories.GroupRepository;
 import lombok.AllArgsConstructor;

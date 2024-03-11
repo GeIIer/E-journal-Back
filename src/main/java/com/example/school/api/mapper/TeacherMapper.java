@@ -38,7 +38,11 @@ public class TeacherMapper extends BaseMapper<TeacherEntity, TeacherPojo> {
                 .stream()
                 .map(subjectMapper::toEntity)
                 .toList() : null);
-        entity.setExperience(pojo.getExperience());
+        if (pojo.getExperience() == null) {
+            entity.setExperience(0);
+        } else {
+            entity.setExperience(pojo.getExperience());
+        }
         entity.setSalary(pojo.getSalary());
         return entity;
     }

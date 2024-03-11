@@ -27,7 +27,7 @@ public class BaseEntityService<E, DTO> implements BaseService<E, DTO> {
     public DTO findById(Long id) {
         Optional<E> optionalEntity = repository.findById(id);
         if (optionalEntity.isEmpty()) {
-            throw new EntityNotFoundException();
+            throw new EntityNotFoundException("id = " + id);
         }
         return mapper.fromEntity(optionalEntity.get());
     }

@@ -1,4 +1,4 @@
-package com.example.school.api.dto;
+package com.example.school.api.dto.student;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,5 +15,4 @@ public class StudentPojo {
     private String lastname;
     private String email;
     private Long groupId;
-
 }

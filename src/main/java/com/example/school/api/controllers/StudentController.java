@@ -1,6 +1,8 @@
 package com.example.school.api.controllers;
 
-import com.example.school.api.dto.StudentPojo;
+import com.example.school.api.dto.student.StudentAveragePojo;
+import com.example.school.api.dto.student.StudentOrderPojo;
+import com.example.school.api.dto.student.StudentPojo;
 import com.example.school.api.entities.StudentEntity;
 import com.example.school.api.services.BaseService;
 import com.example.school.api.services.StudentService;
@@ -27,13 +29,13 @@ public class StudentController extends BaseController<StudentEntity, StudentPojo
 
     @Operation(summary = "Получить список учеников в группе")
     @GetMapping("/group/{groupId}")
-    public List<StudentPojo> findAllByGroup(@PathVariable Long groupId) {
+    public List<StudentOrderPojo> findAllByGroup(@PathVariable Long groupId) {
         return ((StudentService) service).findAllByGroup(groupId);
     }
 
-    @Operation(summary = "Получить средний бал ученика")
-    @GetMapping("/{id}/average")
-    public List<StudentPojo> getAverageMark(@PathVariable Long id) {
-        return ((StudentService) service).findAverageMarkByStudent(id);
+    @Operation(summary = "Получить средний бал учеников")
+    @GetMapping("/average")
+    public List<StudentAveragePojo> getAverageMark() {
+        return ((StudentService) service).findAverageMarkByStudent();
     }
 }
