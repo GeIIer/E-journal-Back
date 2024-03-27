@@ -35,4 +35,8 @@ public class TeacherEntity {
 
     private Double salary;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id", foreignKey = @ForeignKey(name = "teacher_2_parent"))
+    private TeacherEntity parent;
+
 }
