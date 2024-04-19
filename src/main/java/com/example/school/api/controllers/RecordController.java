@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping({"/api/records"})
 @Tag(name = "Контроллер для записей в электронный журнал")
 public class RecordController extends BaseController<RecordEntity, RecordPojo> {

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping({"/api/teachers"})
 @Tag(name = "Контроллер для преподавателей")
 public class TeacherController extends BaseController<TeacherEntity, TeacherPojo> {

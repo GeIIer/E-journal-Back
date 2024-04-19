@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping({"/api/groups"})
 @Tag(name = "Контроллер для учебных групп")
 public class GroupController extends BaseController<GroupEntity, GroupPojo> {
