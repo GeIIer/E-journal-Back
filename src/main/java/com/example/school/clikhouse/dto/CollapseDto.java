@@ -5,15 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReplaceDto {
-    private UUID id;
-    private String value;
-    private LocalDateTime eventTime;
+public class CollapseDto {
+    private UUID userId;
+    private String searchPhrase;
+    private Integer sessionDuration;
+    private Integer sign;
 }

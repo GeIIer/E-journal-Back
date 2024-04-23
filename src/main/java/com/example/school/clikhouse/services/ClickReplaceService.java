@@ -12,4 +12,5 @@ public interface ClickReplaceService {
     ResponseEntity<String> create(ReplaceDto obj);
     ResponseEntity<String> update(ReplaceDto obj);
     ResponseEntity<String> deleteById(UUID id);
+    boolean existsById(UUID id);
 }

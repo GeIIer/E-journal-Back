@@ -1,7 +1,7 @@
 package com.example.school.api.services;
 
-import com.example.school.api.dto.student.SubjectCountPojo;
 import com.example.school.api.dto.SubjectPojo;
+import com.example.school.api.dto.student.SubjectCountPojo;
 import com.example.school.api.entities.SubjectEntity;
 import com.example.school.api.mapper.BaseMapper;
 import com.example.school.api.repositories.BaseRepository;

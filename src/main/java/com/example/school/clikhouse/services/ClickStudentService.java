@@ -16,4 +16,6 @@ public interface ClickStudentService {
     ResponseEntity<String> update(StudentDto obj);
 
     ResponseEntity<String> deleteById(UUID id);
+
+    boolean existsById(UUID id);
 }

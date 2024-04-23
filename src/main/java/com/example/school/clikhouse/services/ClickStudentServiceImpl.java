@@ -89,12 +89,18 @@ public class ClickStudentServiceImpl implements ClickStudentService {
         if (obj != null) {
             if (obj.getFirstname() != null && !obj.getFirstname().isBlank()) {
                 parameterMap.addValue("firstname", obj.getFirstname());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Firstname cannot be blank");
             }
             if (obj.getLastname() != null && !obj.getLastname().isBlank()) {
                 parameterMap.addValue("lastname", obj.getLastname());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Lastname cannot be blank");
             }
             if (obj.getEmail() != null && !obj.getEmail().isBlank()) {
                 parameterMap.addValue("email", obj.getEmail());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email cannot be blank");
             }
         }
         String query = String.join(
@@ -114,24 +120,32 @@ public class ClickStudentServiceImpl implements ClickStudentService {
     public ResponseEntity<String> update(StudentDto obj) {
         MapSqlParameterSource parameterMap = new MapSqlParameterSource();
         if (obj != null) {
-            if (obj.getId() == null) {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (existsById(obj.getId())) {
+                parameterMap.addValue("id", obj.getId());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Запись не найдена");
             }
             if (obj.getFirstname() != null && !obj.getFirstname().isBlank()) {
                 parameterMap.addValue("firstname", obj.getFirstname());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Firstname cannot be blank");
             }
             if (obj.getLastname() != null && !obj.getLastname().isBlank()) {
                 parameterMap.addValue("lastname", obj.getLastname());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Lastname cannot be blank");
             }
             if (obj.getEmail() != null && !obj.getEmail().isBlank()) {
                 parameterMap.addValue("email", obj.getEmail());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email cannot be blank");
             }
         }
         String query = String.join(
                 System.lineSeparator(),
                 """
-                        UPDATE students SET
-                        firstname = :firstname
+                        ALTER TABLE journal.students UPDATE
+                        firstname = :firstname,
                         lastname = :lastname,
                         email = :email
                         WHERE id = :id
@@ -145,8 +159,8 @@ public class ClickStudentServiceImpl implements ClickStudentService {
 
     @Override
     public ResponseEntity<String> deleteById(UUID id) {
-        if (id == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id cannot be null");
+        if (!existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Запись не найдена");
         }
         String query = String.join(
                 System.lineSeparator(),
@@ -159,5 +173,23 @@ public class ClickStudentServiceImpl implements ClickStudentService {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @Override
+    public boolean existsById(UUID id) {
+        if (id == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id cannot be null");
+        }
+        String query = String.join(
+                System.lineSeparator(),
+                """
+                                SELECT
+                                    s.id
+                                FROM journal.students s
+                                WHERE s.id = :id
+                        """
+        );
+        List<StudentDto> res = namedParameterJdbcTemplate.query(query, Collections.singletonMap("id", id), new BeanPropertyRowMapper<>(StudentDto.class));
+        return !res.isEmpty();
     }
 }

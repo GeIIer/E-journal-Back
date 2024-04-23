@@ -1,13 +1,16 @@
 package com.example.school.api.controllers;
 
-import com.example.school.api.dto.student.SubjectCountPojo;
 import com.example.school.api.dto.SubjectPojo;
+import com.example.school.api.dto.student.SubjectCountPojo;
 import com.example.school.api.entities.SubjectEntity;
 import com.example.school.api.services.BaseService;
 import com.example.school.api.services.SubjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
