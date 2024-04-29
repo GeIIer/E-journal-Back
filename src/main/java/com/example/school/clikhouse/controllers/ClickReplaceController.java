@@ -34,13 +34,13 @@ public class ClickReplaceController {
 
     @Operation(summary = "Создать сущность")
     @PostMapping
-    public ResponseEntity<String> create(ReplaceDto obj) {
+    public ResponseEntity<String> create(@RequestBody ReplaceDto obj) {
         return service.create(obj);
     }
 
     @Operation(summary = "Изменить сущность")
     @PutMapping
-    public ResponseEntity<String> updateById(ReplaceDto obj) {
+    public ResponseEntity<String> updateById(@RequestBody ReplaceDto obj) {
         return service.update(obj);
     }
 

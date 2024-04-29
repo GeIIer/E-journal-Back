@@ -21,7 +21,7 @@ public class ClickCollapseController {
 
     @Operation(summary = "Создать сущность")
     @PostMapping
-    public ResponseEntity<String> create(CollapseDto obj) {
+    public ResponseEntity<String> create(@RequestBody CollapseDto obj) {
         return service.create(obj);
     }
 

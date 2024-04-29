@@ -34,13 +34,13 @@ public class ClickStudentController {
 
     @Operation(summary = "Создать сущность")
     @PostMapping
-    public ResponseEntity<String> create(StudentDto obj) {
+    public ResponseEntity<String> create(@RequestBody StudentDto obj) {
         return service.create(obj);
     }
 
     @Operation(summary = "Изменить сущность")
     @PutMapping
-    public ResponseEntity<String> updateById(StudentDto obj) {
+    public ResponseEntity<String> updateById(@RequestBody StudentDto obj) {
         return service.update(obj);
     }
 

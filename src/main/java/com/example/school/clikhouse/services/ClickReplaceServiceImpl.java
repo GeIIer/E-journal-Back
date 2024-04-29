@@ -28,11 +28,11 @@ public class ClickReplaceServiceImpl implements ClickReplaceService {
         MapSqlParameterSource parameterMap = new MapSqlParameterSource();
         if (searchRequest != null) {
             if (searchRequest.getId() != null) {
-                whereBuilder.append(" AND s.id = :id ").append(System.lineSeparator());
+                whereBuilder.append(" AND r.id = :id ").append(System.lineSeparator());
                 parameterMap.addValue("id", searchRequest.getId());
             }
             if (searchRequest.getValue() != null && !searchRequest.getValue().isBlank()) {
-                whereBuilder.append(" AND UPPER(s.value) ILIKE :value ");
+                whereBuilder.append(" AND UPPER(r.value) ILIKE :value ");
                 parameterMap.addValue("value", searchRequest.getValue().toUpperCase() + "%");
             }
         }
@@ -45,9 +45,11 @@ public class ClickReplaceServiceImpl implements ClickReplaceService {
                         	r.value,
                         	r.eventTime
                         FROM journal.replacing r
-                        ORDER BY eventTime
                         """,
-                whereBuilder.toString()
+                        whereBuilder.toString(),
+                        """
+                        ORDER BY eventTime DESC
+                        """
         );
         return namedParameterJdbcTemplate.query(query, parameterMap, new BeanPropertyRowMapper<>(ReplaceDto.class));
     }
@@ -66,7 +68,7 @@ public class ClickReplaceServiceImpl implements ClickReplaceService {
                         	r.eventTime
                         FROM journal.replacing r
                         WHERE r.id = :id
-                        ORDER BY eventTime
+                        ORDER BY eventTime DESC
                         LIMIT 1
                         """
         );
