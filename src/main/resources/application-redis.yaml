@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  data:
+    redis:
+      database: 1
+      host: localhost
+      port: 6379
+
+springdoc:
+  api-docs:
+    path: /api-docs
+rqueue:
+  enabled: false
