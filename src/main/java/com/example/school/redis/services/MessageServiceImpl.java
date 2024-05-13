@@ -12,7 +12,7 @@ public class MessageServiceImpl implements MessageService {
     private final ChannelTopic channelTopic;
 
     @Override
-    public void publishMessage(String msg) {
-        redisTemplate.convertAndSend(channelTopic.getTopic(), msg);
+    public Long publishMessage(String msg) {
+        return redisTemplate.convertAndSend(channelTopic.getTopic(), msg);
     }
 }
