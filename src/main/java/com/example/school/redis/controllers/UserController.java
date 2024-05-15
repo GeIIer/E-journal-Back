@@ -50,4 +50,40 @@ public class UserController {
     public Set<User> getSetUser(@RequestParam String name) {
         return userService.findAllByNameSet(name);
     }
+
+    @PostMapping("/list")
+    public ResponseEntity<ResponseUtil> addList(
+            @RequestParam String key,
+            @RequestParam String email) {
+        return userService.addList(key, email);
+    }
+
+    @GetMapping("/list/{key}")
+    public ResponseEntity<ResponseUtil> getFromList(@PathVariable String key) {
+        return userService.getFromList(key);
+    }
+
+    @PostMapping("/set")
+    public ResponseEntity<ResponseUtil> addSet(
+            @RequestParam String key,
+            @RequestParam String email) {
+        return userService.addSet(key, email);
+    }
+
+    @GetMapping("/set/{key}")
+    public Set<String> getSet(@PathVariable String key) {
+        return userService.getSet(key);
+    }
+
+    @PostMapping("/map/{key}")
+    public ResponseEntity<ResponseUtil> addMap(
+            @PathVariable String key,
+            @RequestParam Map<String, String> map) {
+        return userService.addMap(key, map);
+    }
+
+    @GetMapping("/map/{key}")
+    public Map<String, String> getMap(@PathVariable String key) {
+        return userService.getMap(key);
+    }
 }
