@@ -29,4 +29,18 @@ public class DefaultExceptionHandler {
         );
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({
+            IllegalArgumentException.class
+    })
+    public ResponseEntity<ApiError> handleException(IllegalArgumentException ex,
+                                                    HttpServletRequest request) {
+        ApiError apiError = new ApiError(
+                request.getRequestURI(),
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDate.now()
+        );
+        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
+    }
 }
