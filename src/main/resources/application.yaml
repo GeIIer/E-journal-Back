@@ -2,9 +2,9 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://postgresql:5432/journal
-    username: '${POSTGRES_USER}'
-    password: '${POSTGRES_PASSWORD}'
+    url: jdbc:postgresql://localhost:5454/journal
+    username: geller
+    password: 13112001UJL
     driver-class-name: org.postgresql.Driver
 
   jpa:

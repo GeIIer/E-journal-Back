@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping({"/api/subjects"})
 @Tag(name = "Контроллер для предметов")
 public class SubjectController extends BaseController<SubjectEntity, SubjectPojo> {
