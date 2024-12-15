@@ -1,17 +1,16 @@
 server:
-  port: 8081
+  port: 8082
 spring:
   datasource:
-    url: jdbc:clickhouse://localhost:8123/journal
-    username: click
-    password: 13112001UJL
-    driver-class-name: cc.blynk.clickhouse.ClickHouseDriver
-
+    url: jdbc:postgresql://postgres:5432/journal
+    password: '${POSTGRES_PASSWORD}'
+    username: '${POSTGRES_USER}'
+    driver-class-name: org.postgresql.Driver
   jpa:
     open-in-view: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         show_sql: true
         use_sql_comments: true
         format_sql: true
@@ -20,8 +19,4 @@ spring:
           lob:
             non_contextual_creation: true
     hibernate:
-      ddl-auto: none
-
-springdoc:
-  api-docs:
-    path: /api-docs
+      ddl-auto: update
