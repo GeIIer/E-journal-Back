@@ -1,12 +1,11 @@
-FROM maven:3.8.3-openjdk-17 AS builder
+FROM maven:3.9-amazoncorretto-23 AS builder
 WORKDIR /app
 COPY ./pom.xml /app/pom.xml
 COPY ./src /app/src
 RUN mvn -f /app/pom.xml clean package -DskipTests
 
 
-FROM amazoncorretto:17
-RUN /bin/bash -c "yum update -y && yum install -y curl"
+FROM amazoncorretto:23
 VOLUME /tmp
 ARG BUILDER_DIR=app
 ARG APPJAR=target/*.jar
