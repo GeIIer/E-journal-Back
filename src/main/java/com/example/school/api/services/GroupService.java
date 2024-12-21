@@ -14,6 +14,7 @@ import com.example.school.api.repositories.BaseRepository;
 import com.example.school.api.repositories.GroupRepository;
 import com.example.school.api.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,7 @@ public class GroupService extends BaseEntityService<GroupEntity, GroupPojo> {
         this.teacherMapper = teacherMapper;
     }
 
+    @Transactional(readOnly = true)
     public GroupPojo findByName(Character letter) {
         Optional<GroupEntity> group = ((GroupRepository) repository).findByClassLetter(letter);
         return group.map(mapper::fromEntity).orElseThrow(
@@ -41,6 +43,7 @@ public class GroupService extends BaseEntityService<GroupEntity, GroupPojo> {
     }
 
     @Override
+    @Transactional
     public GroupPojo create(GroupPojo pojo) {
         if (pojo.getTeacher() == null) {
             throw new TeacherNotFoundException("null");
@@ -53,6 +56,7 @@ public class GroupService extends BaseEntityService<GroupEntity, GroupPojo> {
         return mapper.fromEntity(repository.save(entity));
     }
 
+    @Transactional
     public GroupsAndSubjectsPojo findAllGroupsAndSubjects() {
         List<GroupWithoutStudentsPojo> groupsPojo = repository.findAll().stream().map(group -> {
             GroupWithoutStudentsPojo groupPojo = new GroupWithoutStudentsPojo();

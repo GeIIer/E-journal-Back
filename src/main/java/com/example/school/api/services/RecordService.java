@@ -25,6 +25,7 @@ public class RecordService extends BaseEntityService<RecordEntity, RecordPojo> {
         this.jdbcRecordRepository = jdbcRecordRepository;
     }
 
+    @Transactional
     public Map<Long, ArrayList<RecordPojo>> getRecordsByGroupAndSubject(Long groupId, Long subjectId) throws SQLException {
         return jdbcRecordRepository.getRecords(groupId, subjectId);
     }
