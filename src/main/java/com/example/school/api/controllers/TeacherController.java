@@ -1,7 +1,6 @@
 package com.example.school.api.controllers;
 
 import com.example.school.api.dto.TeacherPojo;
-import com.example.school.api.dto.TeacherPojoWithRank;
 import com.example.school.api.entities.TeacherEntity;
 import com.example.school.api.services.BaseService;
 import com.example.school.api.services.TeacherService;
@@ -27,10 +26,4 @@ public class TeacherController extends BaseController<TeacherEntity, TeacherPojo
     public List<TeacherPojo> getAllBySubjects(@RequestParam List<Long> subjectsIds) {
         return ((TeacherService)service).findAllBySubjects(subjectsIds);
     }
-    @Operation(summary = "Получить всех учителей и упорядочить по рангу")
-    @GetMapping("/recourse")
-    public List<TeacherPojoWithRank> getAllBySubjects() {
-        return ((TeacherService)service).findAllWithRecourse();
-    }
-
 }
