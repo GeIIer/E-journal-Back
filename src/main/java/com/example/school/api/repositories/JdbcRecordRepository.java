@@ -27,6 +27,7 @@ public class JdbcRecordRepository {
                 .build();
     }
 
+    @Transactional
     public Map<Long, ArrayList<RecordPojo>> getRecords(Long groupId, Long subjectId) throws SQLException {
         try (Connection conn = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(

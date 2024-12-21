@@ -8,6 +8,7 @@ import com.example.school.api.repositories.BaseRepository;
 import com.example.school.api.repositories.SubjectRepository;
 import jakarta.persistence.Tuple;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class SubjectService extends BaseEntityService<SubjectEntity, SubjectPojo
         super(repository, mapper);
     }
 
+    @Transactional(readOnly = true)
     public List<SubjectCountPojo> getCountTeachers(Double salary) {
         return ((SubjectRepository) repository).countTeachers(salary)
                 .stream()

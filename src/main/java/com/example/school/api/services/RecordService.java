@@ -8,6 +8,7 @@ import com.example.school.api.mapper.BaseMapper;
 import com.example.school.api.repositories.BaseRepository;
 import com.example.school.api.repositories.JdbcRecordRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class RecordService extends BaseEntityService<RecordEntity, RecordPojo> {
         return jdbcRecordRepository.getRecords(groupId, subjectId);
     }
 
+    @Transactional()
     public int[] saveAll(List<RecordPojo> recordPojo) throws SubjectNotFoundException, StudentNotFoundException{
         List<RecordEntity> records = recordPojo.stream().map(mapper::toEntity).toList();
         return jdbcRecordRepository.saveAll(records);

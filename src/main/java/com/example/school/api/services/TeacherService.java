@@ -6,6 +6,7 @@ import com.example.school.api.mapper.BaseMapper;
 import com.example.school.api.repositories.BaseRepository;
 import com.example.school.api.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class TeacherService extends BaseEntityService<TeacherEntity, TeacherPojo
         super(repository, mapper);
     }
 
+    @Transactional(readOnly = true)
     public List<TeacherPojo> findAllBySubjects(List<Long> subjectsIds) {
         List<TeacherEntity> result = ((TeacherRepository)repository).findAllBySubjectsIds(subjectsIds);
         return result.stream()

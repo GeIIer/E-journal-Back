@@ -9,6 +9,7 @@ import com.example.school.api.repositories.BaseRepository;
 import com.example.school.api.repositories.StudentRepository;
 import jakarta.persistence.Tuple;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -23,6 +24,7 @@ public class StudentService extends BaseEntityService<StudentEntity, StudentPojo
         return repository.count();
     }
 
+    @Transactional(readOnly = true)
     public List<StudentOrderPojo> findAllByGroup(Long groupId) {
         return ((StudentRepository) repository).findAllByGroupId(groupId)
                 .stream()
@@ -30,6 +32,7 @@ public class StudentService extends BaseEntityService<StudentEntity, StudentPojo
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public List<StudentAveragePojo> findAverageMarkByStudent() {
         return ((StudentRepository) repository).findAverageCrossById()
                 .stream()
