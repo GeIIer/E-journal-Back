@@ -19,5 +19,4 @@ public class TeacherPojo {
     private List<SubjectPojo> subjects;
     private Integer experience;
     private Double salary;
-    private Long parentId;
 }
