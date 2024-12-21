@@ -2,9 +2,9 @@ server:
   port: 8082
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/journal
-    password: '${POSTGRES_PASSWORD}'
-    username: '${POSTGRES_USER}'
+    url: jdbc:postgresql://localhost:5454/journal
+    username: geller
+    password: 13112001UJL
     driver-class-name: org.postgresql.Driver
   jpa:
     open-in-view: true
@@ -23,9 +23,13 @@ spring:
   application:
     name: e-journal-back
 
+auth:
+  baseUrl: ${AUTH_URI:http://e-journal-auth}
+
 eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}:${server.port}
   instance:
     preferIpAddress: true

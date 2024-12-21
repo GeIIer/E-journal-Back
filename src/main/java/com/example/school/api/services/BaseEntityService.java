@@ -3,6 +3,7 @@ package com.example.school.api.services;
 import com.example.school.api.mapper.BaseMapper;
 import com.example.school.api.repositories.BaseRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class BaseEntityService<E, DTO> implements BaseService<E, DTO> {
         this.mapper = mapper;
     }
     @Override
+    @Transactional(readOnly = true)
     public List<DTO> findAll() {
         return repository.findAll()
                 .stream()
@@ -24,6 +26,7 @@ public class BaseEntityService<E, DTO> implements BaseService<E, DTO> {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public DTO findById(Long id) {
         Optional<E> optionalEntity = repository.findById(id);
         if (optionalEntity.isEmpty()) {
@@ -33,18 +36,21 @@ public class BaseEntityService<E, DTO> implements BaseService<E, DTO> {
     }
 
     @Override
+    @Transactional
     public DTO create(DTO obj) {
         final E entity = mapper.toEntity(obj);
         return (mapper.fromEntity(repository.save(entity)));
     }
 
     @Override
+    @Transactional
     public DTO update(DTO obj) {
         final E entity = mapper.toEntity(obj);
         return (mapper.fromEntity(repository.save(entity)));
     }
 
     @Override
+    @Transactional
     public Long deleteById(Long id) {
         Optional<E> deletedEntity = repository.findById(id);
         if (deletedEntity.isPresent()) {
