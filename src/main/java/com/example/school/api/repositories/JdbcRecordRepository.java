@@ -31,7 +31,7 @@ public class JdbcRecordRepository {
     public Map<Long, ArrayList<RecordPojo>> getRecords(Long groupId, Long subjectId) throws SQLException {
         try (Connection conn = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(
-                    "SELECT r.student_id, r.id, r.date, r.result, r.subject_id FROM records r INNER JOIN students s ON r.student_id = s.id WHERE s.group_id = ? AND r.subject_id = ?"
+                    "SELECT r.student_id, r.id, r.date, r.result, r.subject_id, r.present FROM records r INNER JOIN students s ON r.student_id = s.id WHERE s.group_id = ? AND r.subject_id = ?"
             );
             pstmt.setLong(1, groupId);
             pstmt.setLong(2, subjectId);
