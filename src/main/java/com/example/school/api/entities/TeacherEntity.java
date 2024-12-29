@@ -52,4 +52,17 @@ public class TeacherEntity {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("TeacherEntity{");
+        sb.append("id=").append(id);
+        sb.append(", firstname='").append(firstname).append('\'');
+        sb.append(", lastname='").append(lastname).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", experience=").append(experience);
+        sb.append(", salary=").append(salary);
+        sb.append('}');
+        return sb.toString();
+    }
 }

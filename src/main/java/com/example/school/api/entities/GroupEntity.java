@@ -42,4 +42,14 @@ public class GroupEntity {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("GroupEntity{");
+        sb.append("classLetter=").append(classLetter);
+        sb.append(", classNumber=").append(classNumber);
+        sb.append(", id=").append(id);
+        sb.append('}');
+        return sb.toString();
+    }
 }

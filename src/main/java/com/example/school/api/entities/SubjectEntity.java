@@ -38,4 +38,15 @@ public class SubjectEntity {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("SubjectEntity{");
+        sb.append("id=").append(id);
+        sb.append(", subjectName='").append(subjectName).append('\'');
+        sb.append(", checkpoints=").append(checkpoints);
+        sb.append(", studyHours=").append(studyHours);
+        sb.append('}');
+        return sb.toString();
+    }
 }

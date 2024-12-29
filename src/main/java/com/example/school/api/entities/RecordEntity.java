@@ -52,4 +52,14 @@ public class RecordEntity {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("RecordEntity{");
+        sb.append("id=").append(id);
+        sb.append(", date=").append(date);
+        sb.append(", result=").append(result);
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -52,7 +52,7 @@ public class BaseEntityService<E, DTO> implements BaseService<E, DTO> {
                 RabbitMQConfig.ROUTING_KEY,
                 Message.builder()
                         .id(UUID.randomUUID().toString())
-                        .content("Создание: " + entity.getClass())
+                        .content("Создание: " + entity.toString())
                         .timestamp(new Date().toString())
         );
         return (mapper.fromEntity(repository.save(entity)));
@@ -67,7 +67,7 @@ public class BaseEntityService<E, DTO> implements BaseService<E, DTO> {
                 RabbitMQConfig.ROUTING_KEY,
                 Message.builder()
                         .id(UUID.randomUUID().toString())
-                        .content("Изменение: " + entity.getClass())
+                        .content("Изменение: " + entity.toString())
                         .timestamp(new Date().toString())
         );
         return (mapper.fromEntity(repository.save(entity)));
