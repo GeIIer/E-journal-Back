@@ -1,6 +1,11 @@
 server:
   port: 8082
 spring:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     url: jdbc:postgresql://postgres:5432/journal
     password: '${POSTGRES_PASSWORD}'
@@ -11,7 +16,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        show_sql: true
+        show_sql: false
         use_sql_comments: true
         format_sql: true
         jdbc:
