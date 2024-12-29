@@ -54,6 +54,7 @@ public class BaseEntityService<E, DTO> implements BaseService<E, DTO> {
                         .id(UUID.randomUUID().toString())
                         .content("Создание: " + entity.toString())
                         .timestamp(new Date().toString())
+                        .build()
         );
         return (mapper.fromEntity(repository.save(entity)));
     }
@@ -69,6 +70,7 @@ public class BaseEntityService<E, DTO> implements BaseService<E, DTO> {
                         .id(UUID.randomUUID().toString())
                         .content("Изменение: " + entity.toString())
                         .timestamp(new Date().toString())
+                        .build()
         );
         return (mapper.fromEntity(repository.save(entity)));
     }
